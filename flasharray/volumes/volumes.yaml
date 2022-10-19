@@ -1,5 +1,6 @@
 - name: Create new volume with a QoS limit with 0 Bandwidth QoS and 0 iops_qos
   purefa_volume:
+    hosts: all
     name: "{{ volume_name }}"
     size: "{{ volume_size }}"
     bw_qos: 0
@@ -10,6 +11,7 @@
 
 - name: Create new volume in pod in a protection group
   purefa_volume:
+    hosts: all
     name: "{{ pod_name }}::{{ volume_name }}"
     prgoup: "{{ prgroup_name }}"
     size: "{{ volume_size }}"
@@ -19,6 +21,7 @@
 
 - name: Create X volumes with index starting at start_at_volume_index but padded with 3 digits
   purefa_volume:
+    hosts: all
     name: "{{ volume_name }}"
     size: "{{ volume_size }}"
     suffix: "{{ volume_suffix }}"
@@ -31,6 +34,7 @@
 
 - name: Extend the size of an existing volume named volume_name
   purefa_volume:
+    hosts: all
     name: "{{ volume_name }}"
     size: "{{ new_volume_size_extent }}"
     fa_url: "{{ dst_array_ip }}"
@@ -39,6 +43,7 @@
 
 - name: Delete and eradicate volume named volume_name
   purefa_volume:
+    hosts: all
     name: "{{ volume_name }}"
     eradicate: yes
     fa_url: "{{ dst_array_ip }}"
@@ -47,6 +52,7 @@
 
 - name: Create clone of volume target_volume named new_volume_name
   purefa_volume:
+    hosts: all
     name: "{{ new_volume_name }}"
     target: "{{ target_volume }}"
     fa_url: "{{ dst_array_ip }}"
@@ -55,6 +61,7 @@
 
 - name: Overwrite volume target_volume with volume volume_name
   purefa_volume:
+    hosts: all
     name: "{{ volume_name }}"
     target: "{{ target_volume }}"
     overwrite: yes
@@ -64,6 +71,7 @@
 
 - name: Clear volume QoS from volume volume_name
   purefa_volume:
+    hosts: all
     name: "{{ volume_name }}"
     bw_qos: 0
     iops_qos: 0
@@ -73,6 +81,7 @@
 
 - name: Move local volume volume_name from local array to pod pod_name
   purefa_volume:
+    hosts: all
     name: "{{ volume_name }}"
     move: "{{ pod_name }}"
     fa_url: "{{ dst_array_ip }}"
@@ -80,6 +89,7 @@
 
 - name: Move volume "{{ volume_name }}" in pod "{{ pod_name }}" to local array
   purefa_volume:
+    hosts: all
     name: "{{ pod_name }}"::"{{ volume_name }}"
     move: local
     fa_url: "{{ dst_array_ip }}"
@@ -87,6 +97,7 @@
 
 - name: Move volume "{{ volume_name }}" in pod "{{ target_volume }}" to vgroup vgroup_name
   purefa_volume:
+    hosts: all
     name: "{{ target_volume }}"::"{{ volume_name }}"
     move: "{{ vgroup_name }}"
     fa_url: "{{ dst_array_ip }}"
